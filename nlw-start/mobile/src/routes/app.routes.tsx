@@ -9,7 +9,7 @@ import { New } from '../screens/New'
 export function AppRoutes() {
   return (
     <Navigator screenOptions={{
-      headerShown: false,
+      headerShown: false      
     }}>
       <Screen 
         name="home"
