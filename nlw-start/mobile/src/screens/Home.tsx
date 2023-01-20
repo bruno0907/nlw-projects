@@ -6,9 +6,11 @@ import { Header } from '../components/Header';
 import { HabitDay, DAY_SIZE } from '../components/HabitDay';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';
-import { api } from '../lib/axios';
+
 import { Loading } from '../components/Loading';
 import dayjs from 'dayjs';
+import { api } from '../lib/axios';
+
 
 const weekDays = ['D', 'S', 'T', 'Q', 'Q', 'S', 'S'];
 const datesFromYearStart = generateRangeDatesFromYearStart();
@@ -27,14 +29,24 @@ export function Home() {
   const [loading, setLoading] = useState(true)
   const [summary, setSummary] = useState<SummaryProps[]>([])
 
+  async function getSummary() {
+    try {
+      setLoading(true)
+      
+      const response = await api.get('summary')      
+      setSummary(response.data)   
+      setLoading(false)      
+    } catch (error) {
+      Alert.alert('Não foi possível acessar seus hábitos. Tente novamente mais tarde!')
+
+    } finally {
+      setLoading(false)
+    }
+  }
+
   useEffect(() => {
-    api.get('/summary')
-      .then(({ data }) => setSummary(data))
-      .catch(error => {
-        console.error(error)
-        Alert.alert('Não foi possível buscar os hábitos.')
-      })
-      .finally(() => setLoading(false))
+    getSummary()
+
   }, [])
 
   return (
