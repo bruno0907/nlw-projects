@@ -1,14 +1,14 @@
-import { useRoute } from "@react-navigation/native";
+import { useState, useCallback } from "react";
+import { View, Text, ScrollView, Alert } from "react-native";
+import { useFocusEffect, useRoute } from "@react-navigation/native";
+import { api } from "../lib/axios";
 import clsx from "clsx";
 import dayjs from "dayjs";
-import { useEffect, useState } from "react";
-import { View, Text, ScrollView, Alert } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { Checkbox } from "../components/Checkbox";
 import { HabitsEmpty } from "../components/HabitsEmpty";
 import { Loading } from "../components/Loading";
 import { ProgressBar } from "../components/ProgressBar";
-import { api } from "../lib/axios";
 
 interface Params {
   date: string
@@ -24,6 +24,7 @@ interface HabitDetails {
 
 export function Habit() {
   const [loading, setLoading] = useState(true)
+  
   const [habitDetails, setHabitDetails] = useState<HabitDetails | null>(null)
   const [completedHabits, setCompletedHabits] = useState<string[]>([])
 
@@ -51,10 +52,17 @@ export function Habit() {
   }
 
   async function handleToggleHabit(habitId: string) {
-    if(completedHabits?.includes(habitId)) {
-      setCompletedHabits(prevState => prevState?.filter(habit => habit !== habitId))
-    } else {
-      setCompletedHabits(prevState => [...prevState, habitId])
+    try {
+      await api.patch(`habits/${habitId}/toggle`)
+
+      if(completedHabits?.includes(habitId)) {
+        setCompletedHabits(prevState => prevState?.filter(habit => habit !== habitId))
+      } else {
+        setCompletedHabits(prevState => [...prevState, habitId])
+      }
+      
+    } catch (error) {
+      Alert.alert('Ops...', 'Não foi possível completar este hábito. Tente novamente em 5s.')
     }
   }
 
@@ -62,9 +70,9 @@ export function Habit() {
     ? (completedHabits?.length / habitDetails.possibleHabits.length) * 100
     : 0
 
-  useEffect(() => {
+  useFocusEffect(useCallback(() => {
     getHabits()
-  }, [])
+  }, []))
 
   if(loading) return <Loading />
 

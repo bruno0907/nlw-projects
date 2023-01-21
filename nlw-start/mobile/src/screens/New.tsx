@@ -9,13 +9,13 @@ import colors from 'tailwindcss/colors'
 import { api } from "../lib/axios";
 
 const weekDaysList = [
+  'Domingo',
   'Segunda-feira',
   'Terça-feira',
   'Quarta-feira',
   'Quinta-feira',
   'Sexta-feira',
   'Sábado',
-  'Domingo',
 ]
 
 export function New() {

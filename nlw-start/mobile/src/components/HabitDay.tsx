@@ -17,7 +17,7 @@ interface Props extends TouchableProps {
 }
 
 export function HabitDay({ amount = 0, completed = 0, date, ...rest }: Props) {
-  const completedPercentage = amount > 0 ? (amount / completed) * 100 : 0
+  const completedPercentage = amount > 0 ? (completed / amount) * 100 : 0
   const today = dayjs().startOf('day').toDate()
   const isCurrentyDay = dayjs(date).isSame(today)
 
