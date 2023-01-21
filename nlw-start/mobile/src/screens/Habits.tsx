@@ -1,9 +1,11 @@
 import { useRoute } from "@react-navigation/native";
+import clsx from "clsx";
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
 import { View, Text, ScrollView, Alert } from "react-native";
 import { BackButton } from "../components/BackButton";
 import { Checkbox } from "../components/Checkbox";
+import { HabitsEmpty } from "../components/HabitsEmpty";
 import { Loading } from "../components/Loading";
 import { ProgressBar } from "../components/ProgressBar";
 import { api } from "../lib/axios";
@@ -32,6 +34,7 @@ export function Habit() {
   const parsedDate = dayjs(date)
   const dayOfWeek = parsedDate.format('dddd')
   const dayAndMonth = parsedDate.format('DD/MM')
+  const isPastDate = parsedDate.endOf('day').isBefore(new Date())
 
   async function getHabits() {
     try {
@@ -56,7 +59,7 @@ export function Habit() {
   }
 
   const completedPercentage = habitDetails?.possibleHabits.length 
-    ? (completedHabits.length / habitDetails.possibleHabits.length) * 100
+    ? (completedHabits?.length / habitDetails.possibleHabits.length) * 100
     : 0
 
   useEffect(() => {
@@ -79,16 +82,30 @@ export function Habit() {
         
         <ProgressBar progress={completedPercentage} />
 
-        <View className="mt-6">
-          {habitDetails?.possibleHabits && habitDetails.possibleHabits.map(habit => (
-            <Checkbox 
-              key={habit.id}
-              title={habit.title}
-              checked={completedHabits?.includes(habit.id)} 
-              onPress={() => handleToggleHabit(habit.id)}
-            />
-        ))}
+        <View className={clsx("mt-6", {
+          ["opacity-50"]: isPastDate
+        })}>
+          {!habitDetails?.possibleHabits.length ? <HabitsEmpty /> : (
+            <>
+              {habitDetails?.possibleHabits.map(habit => (
+                <Checkbox 
+                  key={habit.id}
+                  title={habit.title}
+                  checked={completedHabits?.includes(habit.id)} 
+                  onPress={() => handleToggleHabit(habit.id)}
+                  disabled={isPastDate}
+                />
+              ))}
+              {isPastDate && (
+                <Text className="text-white mt-10 text-center">
+                  Você não pode completar hábitos de uma data passsada.
+                </Text>
+              )}
+            </>
+          )
+        }
         </View>
+
       </ScrollView>
 
     </View>

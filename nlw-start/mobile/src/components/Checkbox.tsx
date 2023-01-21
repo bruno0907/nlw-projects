@@ -5,11 +5,10 @@ import { TouchableProps } from "react-native-svg";
 
 interface Props extends TouchableProps {
   title?: string
-  checked?: boolean;
+  checked?: boolean
 }
 
 export function Checkbox({ checked = false, title, ...rest }: Props) {
-  
   return (
     <TouchableOpacity activeOpacity={0.7} className="flex-row mb-2 items-center" {...rest}>
       { checked ? (
