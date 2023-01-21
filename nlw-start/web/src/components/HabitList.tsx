@@ -7,6 +7,7 @@ import { api } from "../lib/axios";
 
 interface HabitsListProps {
   date: Date
+  onCompletedChange: (completed: number) => void
 }
 
 interface HabitsInfoProps {
@@ -19,7 +20,7 @@ interface PossibleHabits {
   title: string
 }
 
-export function HabitsList({ date }: HabitsListProps) {
+export function HabitsList({ date, onCompletedChange }: HabitsListProps) {
   const [habitsInfo, setHabitsInfo] = useState<HabitsInfoProps | null>(null)
 
   const isPastDate = dayjs(date).endOf('day').isBefore(new Date(), 'day')
@@ -39,21 +40,27 @@ export function HabitsList({ date }: HabitsListProps) {
 
   async function toggleCheckHabit(habitId: string) {
     try {
+      await api.patch(`habits/${habitId}/toggle`)
+
       const isHabitAlreadyCompleted = habitsInfo?.completedHabits.includes(habitId)
+      
+      let completedHabits = []
 
       if(isHabitAlreadyCompleted) {        
-        setHabitsInfo(prevState => ({
-          ...prevState!,
-          completedHabits: [...prevState!.completedHabits.filter(id => id !== habitId)]
-        }))
+        completedHabits = habitsInfo!.completedHabits.filter(id => id !== habitId)
 
       } else {
-        setHabitsInfo(prevState => ({
-          ...prevState!,
-          completedHabits: [...prevState!.completedHabits, habitId]
-        }))
+        completedHabits = [...habitsInfo!.completedHabits, habitId]
+        
       }
-      await api.patch(`habits/${habitId}/toggle`)
+
+      setHabitsInfo({
+        possibleHabits: habitsInfo!.possibleHabits,
+        completedHabits
+      })
+
+      onCompletedChange(completedHabits.length ?? 0)
+
     } catch (error) {
       console.log(error)
     }
