@@ -1,0 +1,5 @@
+{
+  "extends": [
+    "@rocketseat/esling-config/react"
+  ]
+}
