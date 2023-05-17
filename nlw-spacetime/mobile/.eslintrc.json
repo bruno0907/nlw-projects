@@ -1,5 +1,8 @@
 {
   "extends": [
     "@rocketseat/esling-config/react"
-  ]
+  ],
+  "rules": {
+    "camelcase": "off"
+  }
 }
