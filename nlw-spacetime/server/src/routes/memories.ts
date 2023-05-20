@@ -25,7 +25,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
     })
   })
 
-  app.get('/memory/:id', async (request, reply) => {
+  app.get('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -45,7 +45,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
 
-  app.post('/memory', async (request) => {
+  app.post('/memories', async (request) => {
     const bodySchema = z.object({
       content: z.string(),
       coverUrl: z.string(),
@@ -66,7 +66,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
 
-  app.put('/memory', async (request, reply) => {
+  app.put('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
@@ -105,7 +105,7 @@ export async function memoriesRoutes(app: FastifyInstance) {
     return memory
   })
 
-  app.delete('/memory/:id', async (request, reply) => {
+  app.delete('/memories/:id', async (request, reply) => {
     const paramsSchema = z.object({
       id: z.string().uuid(),
     })
