@@ -9,7 +9,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: 'var(--font-roboto)',
-        alt: 'var(--font-baiJamJuree)'
+        alt: 'var(--font-baiJamJuree)',
       },
       colors: {
         gray: {
@@ -49,29 +49,29 @@ module.exports = {
           900: '#025929',
         },
         orange: {
-         50: '#ffefeb',
-         100: '#ffccc2',
-         200: '#ffb4a4',
-         300: '#ff927b',
-         400: '#ff7d61',
-         500: '#ff5c3a',
-         600: '#e85435',
-         700: '#b54129',
-         800: '#8c3320',
-         900: '#6b2718',
+          50: '#ffefeb',
+          100: '#ffccc2',
+          200: '#ffb4a4',
+          300: '#ff927b',
+          400: '#ff7d61',
+          500: '#ff5c3a',
+          600: '#e85435',
+          700: '#b54129',
+          800: '#8c3320',
+          900: '#6b2718',
         },
         yellow: {
-        50: '#fff9ec',
-        100: '#ffebc4',
-        200: '#ffe2a7',
-        300: '#ffd47f',
-        400: '#ffcc66',
-        500: '#ffbf40',
-        600: '#e8ae3a',
-        700: '#b5882d',
-        800: '#8c6923',
-        900: '#6b501b',
-        }
+          50: '#fff9ec',
+          100: '#ffebc4',
+          200: '#ffe2a7',
+          300: '#ffd47f',
+          400: '#ffcc66',
+          500: '#ffbf40',
+          600: '#e8ae3a',
+          700: '#b5882d',
+          800: '#8c6923',
+          900: '#6b501b',
+        },
       },
       backgroundImage: {
         stripes:
@@ -91,5 +91,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
