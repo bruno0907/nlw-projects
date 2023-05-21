@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 
 import { makeRedirectUri, useAuthRequest } from 'expo-auth-session'
@@ -30,19 +30,17 @@ export default function App() {
     discovery,
   )
 
-  const handleGithubOAuthCode = useCallback(
-    async (code: string) => {
-      const response = await api.post('/register', {
-        code,
-      })
+  // eslint-disable-next-line
+  async function handleGithubOAuthCode(code: string) {    
+    const response = await api.post('/register', {
+      code,
+    })
 
-      const { token } = response.data
-      await SecureStore.setItemAsync('token', token)
+    const { token } = response.data
+    await SecureStore.setItemAsync('token', token)
 
-      router.push('/memories')
-    },
-    [router],
-  )
+    router.push('/memories')
+  }
 
   useEffect(() => {
     if (response?.type === 'success') {
