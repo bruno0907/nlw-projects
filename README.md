@@ -7,5 +7,6 @@ Some of the projects that I will show here
 - NLW Setup
 - NLW Return
 - NLW Spacetime
+- NLW Setup
 
 and more to come...
