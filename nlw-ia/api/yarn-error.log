@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Users\bruno\AppData\Roaming\nvm\v16.20.0\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js init
+
+PATH: 
+  C:\Users\bruno\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\bruno\bin;C:\Python311\Scripts;C:\Python311;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Windows\System32\OpenSSH;C:\Program Files\Git\cmd;C:\ProgramData\chocolatey\bin;C:\Users\bruno\AppData\Roaming\npm;C:\Program Files (x86)\Yarn\bin;C:\Users\bruno\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Docker\Docker\resources\bin;C:\Users\bruno\AppData\Local\Android\Sdk\platform-tools;C:\Users\bruno\AppData\Local\Android\Sdk\tools;C:\Users\bruno\AppData\Local\jdk-11.0.2\bin;C:\Users\bruno\AppData\Local\Microsoft\WindowsApps;C:\Users\bruno\AppData\Roaming\npm;C:\Users\bruno\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\bruno\AppData\Local\Yarn\bin;C:\Users\bruno\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.20.0
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:137150:13)
+      at Interface.emit (node:events:513:28)
+      at Interface._ttyWrite (node:readline:1085:16)
+      at ReadStream.onkeypress (node:readline:291:10)
+      at ReadStream.emit (node:events:513:28)
+      at emitKeys (node:internal/readline/utils:357:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:513:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
