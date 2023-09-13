@@ -7,13 +7,14 @@
     "dev": "tsx watch ./src/index.ts"
   },
   "devDependencies": {
+    "@prisma/client": "^5.2.0",
     "@types/node": "^20.6.0",
     "prisma": "^5.2.0",
     "tsx": "^3.12.9",
-    "typescript": "^5.2.2",
-    "@prisma/client": "^5.2.0"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
+    "@fastify/multipart": "^7.7.3",
     "fastify": "^4.23.0"
   }
 }
