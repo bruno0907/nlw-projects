@@ -4,8 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "node dist/index",
-    "dev": "tsx watch ./src/index.ts",
+    "start": "node dist/server",
+    "dev": "tsx watch ./src/server.ts",
     "build": "tsc",
     "lint": "yarn eslint **/*.ts --fix"
   },
