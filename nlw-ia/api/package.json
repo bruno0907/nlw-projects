@@ -4,17 +4,26 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "tsx watch ./src/index.ts"
+    "start": "node dist/index",
+    "dev": "tsx watch ./src/index.ts",
+    "build": "tsc",
+    "lint": "yarn eslint **/*.ts --fix"
   },
   "devDependencies": {
     "@prisma/client": "^5.2.0",
     "@types/node": "^20.6.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.0",
+    "@typescript-eslint/parser": "^6.7.0",
+    "eslint": "^8.49.0",
     "prisma": "^5.2.0",
     "tsx": "^3.12.9",
     "typescript": "^5.2.2"
   },
   "dependencies": {
     "@fastify/multipart": "^7.7.3",
-    "fastify": "^4.23.0"
+    "dotenv": "^16.3.1",
+    "fastify": "^4.23.0",
+    "openai": "^4.6.0",
+    "zod": "^3.22.2"
   }
 }
