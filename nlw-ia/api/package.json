@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "prisma": {
+    "seed": "tsx prisma/seed.ts"
+  },
   "scripts": {
     "start": "node dist/server",
     "dev": "tsx watch ./src/server.ts",
@@ -22,6 +25,7 @@
   "dependencies": {
     "@fastify/cors": "^8.3.0",
     "@fastify/multipart": "^7.7.3",
+    "ai": "^2.2.12",
     "dotenv": "^16.3.1",
     "fastify": "^4.23.0",
     "openai": "^4.6.0",
