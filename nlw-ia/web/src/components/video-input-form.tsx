@@ -11,6 +11,10 @@ import { api } from "@/lib/axios";
 
 type Status = 'converting' | 'uploading' | 'transcribing' | 'waiting' | 'success';
 
+interface VideoImportFormatProps {
+  onVideoUploaded: (id: string) => void;
+}
+
 const statusMessages = {
   converting: 'Convervendo...',
   uploading: 'Carregando...',
@@ -18,7 +22,7 @@ const statusMessages = {
   success: 'Sucesso!'
 }
 
-export function VideoInputFormat() {
+export function VideoInputFormat({ onVideoUploaded }: VideoImportFormatProps) {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [loadingProgress, setLoadingProgress] = useState(0);
   const [statusMessage, setStatusMessage] = useState<Status>('waiting');
@@ -103,6 +107,8 @@ export function VideoInputFormat() {
     console.log({ transcription })
     setStatusMessage('success')
     setLoadingProgress(0)
+
+    onVideoUploaded(videoId)
   }
 
   const previewURL = useMemo(() => {
