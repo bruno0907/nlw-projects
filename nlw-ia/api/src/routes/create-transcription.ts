@@ -37,7 +37,7 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
 			prompt
 		});
 
-		await prisma.video.update({
+		const response = await prisma.video.update({
 			where: {
 				id: videoId
 			},
@@ -46,6 +46,6 @@ export async function createTranscriptionRoute(app: FastifyInstance) {
 			}
 		});
 
-		return reply.status(201).send();
+		return reply.status(201).send(response);
 	});
 }
